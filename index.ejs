@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Diego Lima Test</title>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="side-left-bar">
+        <div class="side-left-bar-content">
+          <h1>Quantity</h1>
+          <input type="number" placeholder="Type Here" min="0" max="3" id="qttinput" name="qttinput" class="qttinput" onchange="onInputChange()">
+        </div>
+      </div>
+      <div class="items-list" id="item-list">
+        </div>
+      </div>
+      <script>
+        const items = [
+          "First item title",
+          "Second item title",
+          "Third item title",
+        ]
+
+        function onInputChange() {
+          var inputQttValue = document.getElementById("qttinput").value
+          var itemsDiv = document.getElementById("item-list");
+
+          if (inputQttValue <= items.length && inputQttValue != 0) {
+            // Clear the items div before add any item
+            itemsDiv.innerHTML = "";
+            for (const [index, element] of items.slice(0, inputQttValue).entries()) {
+              const newItem = document.createElement("div")
+              newItem.classList.add("item");
+
+              const newItemIndex = document.createElement("H1");
+              newItemIndex.classList.add("items-list-index");
+              newItemIndex.textContent = `${index + 1}`;
+
+              const newItemTitle = document.createElement("H1");
+              newItemTitle.classList.add("item-list-title");
+              newItemTitle.textContent = `${element}`;
+
+              itemsDiv.appendChild(newItem);
+              newItem.appendChild(newItemIndex);
+              newItem.appendChild(newItemTitle);
+            }
+          }
+          else if (inputQttValue == 0) {
+            itemsDiv.innerHTML = ""
+
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
